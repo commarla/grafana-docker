@@ -2,7 +2,7 @@ FROM debian:jessie
 
 ENV GRAFANA_VERSION 2.5.1-pre1
 
-COPY sources.list /etc/apt/sources.list
+#COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
     apt-get -y install libfontconfig adduser && \
