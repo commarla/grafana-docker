@@ -1,13 +1,19 @@
 FROM debian:jessie
 
-ENV GRAFANA_VERSION 2.1.3
+ENV GRAFANA_VERSION 2.5.1-pre1
+ENV https_proxy http://muz11-wbsswsg.ca-technologies.fr:8080
+ENV http_proxy http://muz11-wbsswsg.ca-technologies.fr:8080
+ENV ftp_proxy http://muz11-wbsswsg.ca-technologies.fr:8080
+
+COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get -y install libfontconfig wget adduser openssl ca-certificates && \
-    apt-get clean && \
-    wget https://grafanarel.s3.amazonaws.com/builds/grafana_${GRAFANA_VERSION}_amd64.deb -O /tmp/grafana.deb && \
-    dpkg -i /tmp/grafana.deb && \
-    rm /tmp/grafana.deb
+    apt-get -y install libfontconfig adduser && \
+    apt-get clean
+
+COPY grafana_2.5.1-pre1_amd64.deb /tmp/grafana.deb
+
+RUN dpkg -i /tmp/grafana.deb && rm /tmp/grafana.deb
 
 VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
 
