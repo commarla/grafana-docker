@@ -1,12 +1,12 @@
 FROM debian:jessie
 
-COPY sources.list /etc/apt/sources.list
+MAINTAINER laurent.commarieu@gmail.com
 
 RUN apt-get update && \
     apt-get -y install libfontconfig adduser && \
     apt-get clean
 
-COPY grafana_2.6.0-pre1_amd64.deb /tmp/grafana.deb
+ADD https://grafanarel.s3.amazonaws.com/builds/grafana_latest_amd64.deb /tmp/grafana.deb
 
 RUN dpkg -i /tmp/grafana.deb && rm /tmp/grafana.deb
 
