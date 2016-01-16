@@ -4,10 +4,11 @@ ENV GRAFANA_VERSION 2.6.0
 
 RUN apt-get update && \
     apt-get -y install libfontconfig wget adduser openssl ca-certificates && \
-    apt-get clean && \
-    wget https://grafanarel.s3.amazonaws.com/builds/grafana_${GRAFANA_VERSION}_amd64.deb -O /tmp/grafana.deb && \
-    dpkg -i /tmp/grafana.deb && \
-    rm /tmp/grafana.deb
+    apt-get clean
+	
+ADD https://grafanarel.s3.amazonaws.com/builds/grafana_${GRAFANA_VERSION}_amd64.deb /tmp/grafana.deb
+
+RUN dpkg -i /tmp/grafana.deb && rm /tmp/grafana.deb
 
 VOLUME ["/var/lib/grafana", "/var/log/grafana", "/etc/grafana"]
 
