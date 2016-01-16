@@ -2,8 +2,9 @@
 
 
 Multiple Grafana release are available
-2.5.1-pre1
-2.6.0-pre1
+latest (nightly builds)
+2.5.1
+2.6.0
 
 
 ## Running your Grafana image
